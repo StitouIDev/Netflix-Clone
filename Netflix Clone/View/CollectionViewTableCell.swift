@@ -11,12 +11,14 @@ class CollectionViewTableCell: UITableViewCell {
 
     static let identifier = "CollectionViewTableCell"
     
+    private var titles: [MovieTv] = [MovieTv]()
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 140, height: 200)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(MovieTvCollectionViewCell.self, forCellWithReuseIdentifier: MovieTvCollectionViewCell.identifier)
         return collectionView
     }()
     
@@ -38,13 +40,21 @@ class CollectionViewTableCell: UITableViewCell {
         collectionView.frame = contentView.bounds
     }
     
+    public func configure(with titles: [MovieTv]) {
+        self.titles = titles
+    }
+    
 }
 
 
 extension CollectionViewTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .blue
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieTvCollectionViewCell.identifier, for: indexPath) as? MovieTvCollectionViewCell else {
+            return UICollectionViewCell()
+            
+        }
+        cell.configure(with: "")
+        
         return cell
     }
     
