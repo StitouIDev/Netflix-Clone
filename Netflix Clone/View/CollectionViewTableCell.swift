@@ -42,6 +42,9 @@ class CollectionViewTableCell: UITableViewCell {
     
     public func configure(with titles: [MovieTv]) {
         self.titles = titles
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
     }
     
 }
@@ -53,13 +56,18 @@ extension CollectionViewTableCell: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
             
         }
-        cell.configure(with: "")
+
+        guard let path = titles[indexPath.row].poster_path else {
+            return UICollectionViewCell()
+            
+        }
+        cell.configure(with: path)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return titles.count
     }
     
     

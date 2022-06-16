@@ -12,7 +12,7 @@ enum Sections: Int {
     case TrendingTv = 1
     case Popular = 2
     case Upcoming = 3
-    case TopRaated = 4
+    case TopRated = 4
 }
 
 class HomeVC: UIViewController {
@@ -81,6 +81,56 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
             }
         
+        switch indexPath.section {
+        case Sections.TrendingMovies.rawValue:
+            ApiManager.shared.getTrendingMovies { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.TrendingTv.rawValue:
+            ApiManager.shared.getTrendingTvs { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.Popular.rawValue:
+            ApiManager.shared.getPopular { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            
+        case Sections.Upcoming.rawValue:
+            ApiManager.shared.getUpcoming { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.TopRated.rawValue:
+            ApiManager.shared.getTopRated { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
         
         
         return cell
