@@ -38,6 +38,8 @@ class HomeVC: UIViewController {
         let headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         
         homeFeedTableView.tableHeaderView = headerView
+        
+        ApiManager.shared.getMovie(with: "harry potter")
     
     }
     

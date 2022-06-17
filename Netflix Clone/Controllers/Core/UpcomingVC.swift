@@ -13,7 +13,7 @@ class UpcomingVC: UIViewController {
     
     private let upcomingTable: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
         return tableView
     }()
 
@@ -62,8 +62,17 @@ extension UpcomingVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = titles[indexPath.row].original_name ?? titles[indexPath.row].original_title ?? "Unknow"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.identifier, for: indexPath) as? TitleTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let title = titles[indexPath.row]
+        cell.configure(with: TitleViewModel(titleName: (title.original_name ?? title.original_title) ?? "Unknown Name", posterURL: title.poster_path ?? ""))
+        
         return cell
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
+    
 }
