@@ -152,7 +152,7 @@ class ApiManager {
         task.resume()
     }
     
-    func getMovie(with query: String) {
+    func getMovie(with query: String, completion: @escaping (Result<YoutubeElement, Error>) -> Void) {
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         guard let url = URL(string: "\(Constants.YoutubeBaseUrl)q=\(query)&key=\(Constants.YoutubeApi_Key)") else { return }
         
@@ -161,11 +161,12 @@ class ApiManager {
             
             
             do {
-                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print(results)
+                let results = try JSONDecoder().decode(YoutubeResponse.self, from: data)
+                completion(.success(results.items[0]))
                 
             } catch {
-                print(error)
+                completion(.failure(error))
+                print(error.localizedDescription)
 
             }
         }
