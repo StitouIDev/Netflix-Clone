@@ -33,12 +33,16 @@ class HomeVC: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(homeFeedTableView)
         
+
+        
         homeFeedTableView.delegate = self
         homeFeedTableView.dataSource = self
         
-        configureNavBar()
         
         headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
+        
+        configureNavBar()
+
         
         homeFeedTableView.tableHeaderView = headerView
         configureHeroHeaderView()
@@ -59,16 +63,17 @@ class HomeVC: UIViewController {
     }
     
     private func configureNavBar(){
-        var image = UIImage(named: "netflixLogo")
+        var image = UIImage(named: "netflix_LG")
         image = image?.withRenderingMode(.alwaysOriginal)
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "netflix_LG"), style: .done, target: self, action: nil)
         
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
             UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
         ]
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = .red
         
     
     }
