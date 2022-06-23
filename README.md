@@ -10,14 +10,14 @@ Scroll with different sections: Trending Movie, Trending Tv, Popular, UpComing M
 
 <img width="335" alt="Screenshot 2022-06-21 at 12 42 00" src="https://user-images.githubusercontent.com/97193403/174800787-77e6c0b6-a543-4205-b746-2abc66e87e00.png">. <img width="332" alt="Screenshot 2022-06-21 at 12 42 19" src="https://user-images.githubusercontent.com/97193403/174801092-d54a9056-63e5-42a0-a8d5-5808eea41757.png">
 
--Clicked in Title:
+- Clicked in Title:
 
 Preview Title ( title Name, Description, Play trailer video)
 
 <img width="338" alt="Screenshot 2022-06-21 at 12 42 59" src="https://user-images.githubusercontent.com/97193403/174803543-8e7c6666-735f-4dff-913d-c37011350a4c.png">
 
 
--Hold Pressing 
+- Hold Pressing 
 
 For add the title to Downloads List
 
