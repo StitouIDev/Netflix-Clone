@@ -1,7 +1,8 @@
 # Netflix-Clone
 
-This application (Netflix clone) was built using Swift 5 & UIKit , Api netflix and Api youtube for Trailer.
- I have built the following screens within this application:
+This application (Netflix Clone) was built using Swift & UIKit, Api netflix and Api youtube for Trailer.
+
+**I have built the following screens within this application:**
  
 **HomePage:**
 
